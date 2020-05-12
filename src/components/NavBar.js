@@ -1,14 +1,14 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 const NavBar = () => {
     return(
         <nav>
         <div className="nav-wrapper white">
-          <a href="/" className="brand-logo left">Instaclone</a>
+          <a to="/" className="brand-logo left">Instaclone</a>
           <ul id="nav-mobile" className="right">
-            <li><a href="/login">Login</a></li>
-            <li><a href="/signup">Sign Up</a></li>
-            <li><a href="/profile">Profile</a></li>
+            <li><Link to="/signin">Login</Link></li>
+            <li><Link to="/signup">Sign Up</Link></li>
+            <li><Link to="/profile">Profile</Link></li>
           </ul>
         </div>
       </nav>
