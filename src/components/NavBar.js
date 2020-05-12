@@ -4,7 +4,7 @@ const NavBar = () => {
     return(
         <nav>
         <div className="nav-wrapper white">
-          <a to="/" className="brand-logo left">Instaclone</a>
+          <Link to="/" className="brand-logo left">Instaclone</Link>
           <ul id="nav-mobile" className="right">
             <li><Link to="/signin">Login</Link></li>
             <li><Link to="/signup">Sign Up</Link></li>
