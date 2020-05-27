@@ -5,7 +5,7 @@ const Home = () => {
   const [data, setData] = useState([]);
   const { state, dispatch } = useContext(UserContext);
   useEffect(() => {
-    fetch("/allposts", {
+    fetch("/followedposts", {
       headers: {
         Authorisation: "Bearer " + localStorage.getItem("jwt"),
       },
