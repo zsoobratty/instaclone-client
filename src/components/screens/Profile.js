@@ -5,7 +5,6 @@ const Profile = () => {
   const [myPics,setPics] = useState([])
   const {state,dispatch} = useContext(UserContext)
   const [image,setImage] = useState("")
-  const [url,setUrl] = useState(undefined)
   useEffect(()=>{
     fetch('/myposts',{
       headers:{
@@ -29,10 +28,21 @@ const Profile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setUrl(data.url);
-        console.log(data)
-        localStorage.setItem("user",JSON.stringify({...state,pic:data.url}))
-        dispatch({type:"UPDATEPIC",payload:data.url})
+        fetch('/updatepic',{
+          method:'put',
+          headers:{
+            "Content-Type":"application/json",
+            "Authorisation":"Bearer "+localStorage.getItem('jwt')
+          },
+          body:JSON.stringify({
+            pic:data.url
+          })
+        }).then(res=>res.json())
+        .then(result=>{
+          console.log(result)
+          localStorage.setItem("user",JSON.stringify({...state,pic:result.pic}))
+          dispatch({type:"UPDATEPIC",payload:result.pic})
+        })
       })
       .catch((err) => {
         console.log(err);
